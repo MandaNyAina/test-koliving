@@ -3,7 +3,7 @@
 An ads management application, with the features:
 
 - List of ads (create / read / update / delete)
-- List of tenant
+- List of tenant (create / read / update / delete)
 - Attach a tenant to the ads (In tenant detail)
 
 ## Techno
