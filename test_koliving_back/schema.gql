@@ -1,0 +1,103 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type RoomDtoOutput {
+  _id: String!
+  title: String!
+  surfaces: Float!
+  pictures: [String!]!
+}
+
+type PropertyDtoOutput {
+  _id: String!
+  title: String!
+  address: String!
+  rooms: [RoomDtoOutput!]!
+  surfaces: Float!
+  pictures: [String!]!
+}
+
+type TenantDtoOutput {
+  _id: String!
+  first_name: String!
+  last_name: String!
+  email: String!
+  rents: RentDtoOutput
+}
+
+type RentDtoOutput {
+  _id: String!
+  tenants: TenantDtoOutput!
+  rent_price: Float!
+}
+
+type AdsDtoOutput {
+  _id: String!
+  properties: PropertyDtoOutput!
+  rents: RentDtoOutput
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  sayHello: String!
+  getAllAds(id_rent: String): [AdsDtoOutput!]!
+  getAdsById(_id: String!): AdsDtoOutput
+  getAllTenant: [TenantDtoOutput!]!
+  getTenantById(_id: String!): TenantDtoOutput!
+}
+
+type Mutation {
+  createAds(input: CreateAdsDto!): AdsDtoOutput!
+  updateAds(input: UpdateAdsDto!): AdsDtoOutput!
+  deleteAds(_id: String!): String!
+  createTenant(input: TenantDto!): TenantDtoOutput!
+  updateTenant(input: TenantDto!): TenantDtoOutput
+  deleteTenant(_id: String!): String!
+  attachTenantToAd(ad_id: String!, tenant_id: String!, rent_price: Float!): String!
+}
+
+input CreateAdsDto {
+  properties: PropertyDto!
+  rents: RentDto
+}
+
+input PropertyDto {
+  _id: String
+  title: String!
+  address: String!
+  rooms: [RoomDto!]!
+  surfaces: Float!
+  pictures: [String!]!
+}
+
+input RoomDto {
+  _id: String
+  title: String!
+  surfaces: Float!
+  pictures: [String!]!
+}
+
+input RentDto {
+  _id: String
+  tenants: TenantDto!
+  rent_price: Float!
+}
+
+input TenantDto {
+  _id: String
+  first_name: String!
+  last_name: String!
+  email: String!
+}
+
+input UpdateAdsDto {
+  _id: String!
+  properties: PropertyDto!
+  rents: RentDto
+}

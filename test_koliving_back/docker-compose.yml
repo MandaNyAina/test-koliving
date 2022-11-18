@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  test_koliving_back:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: development
+    ports:
+      - 3001:3001
+    container_name: test_koliving_back
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
